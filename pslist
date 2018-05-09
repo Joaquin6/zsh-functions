@@ -3,18 +3,28 @@
 setopt localoptions extendedglob
 
 local -a pfxs lines desc
-pfxs=( ps g1 n1 x1 )
-pfxs+=( "*~$HOME/functions/(${(j:|:)pfxs})" )
+pfxs=( ps g1 n1 x1 )                                # grouped commands
+pfxs+=( "*~$HOME/functions/(${(j:|:)pfxs}|lps)" )   # ungrouped commands
+pfxs+=( lps )                                       # local, uncommited commands
 
 integer pass longest=0 longest2=0
 local p file header="# DESC: "
 
 for (( pass = 1; pass <= 2; ++ pass )); do
-    if (( pass == 2 )); then
-        print -r -- ${(l:longest+longest2::-:):-}
-    fi
     for p in "${pfxs[@]}"; do
-        for file in $HOME/functions/${~p}*; do
+        files=( $HOME/functions/${~p}*(N) )
+
+        if (( pass == 2 )); then
+            if (( ${#files[@]} )); then
+                if [[ "$p" = "lps" ]]; then
+                    print -r -- ${(l:(longest+longest2)/2-4::-:):-} LOCAL ${(l:longest+longest2-(longest+longest2)/2-3::-:):-}
+                else
+                    print -r -- ${(l:longest+longest2::-:):-}
+                fi
+            fi
+        fi
+
+        for file in "${files[@]}"; do
             lines=( ${(f)"$(<$file)"} )
             desc=( "${(M)lines[@]:#${header}*}" )
             desc[1]="${desc[1]#$header}"
@@ -27,10 +37,10 @@ for (( pass = 1; pass <= 2; ++ pass )); do
                 echo "${file}${(l:longest-${#file}:: :):- }${desc[1]}"
             fi
         done
-        if (( pass == 2 )); then
-            print -r -- ${(l:longest+longest2::-:):-}
-        fi
     done
+    if (( pass == 2 )); then
+        print -r -- ${(l:longest+longest2::-:):-}
+    fi
 done
 
 # vim:ft=zsh:et
