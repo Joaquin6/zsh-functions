@@ -2,7 +2,7 @@
 
 setopt localoptions extendedglob
 
-local -a pfxs lines desc
+local -a pfxs lines desc files
 pfxs=( ps t1 f1 g1 n1 x1 )                          # grouped commands
 pfxs+=( "*~$HOME/functions/(${(j:|:)pfxs}|lps)" )   # ungrouped commands
 pfxs+=( lps )                                       # local, uncommited commands
