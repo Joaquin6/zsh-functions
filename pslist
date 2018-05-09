@@ -1,0 +1,36 @@
+# DESC: lists ~/functions/* with their embedded descriptions
+
+setopt localoptions extendedglob
+
+local -a pfxs lines desc
+pfxs=( ps g1 n1 x1 )
+pfxs+=( "*~$HOME/functions/(${(j:|:)pfxs})" )
+
+integer pass longest=0 longest2=0
+local p file header="# DESC: "
+
+for (( pass = 1; pass <= 2; ++ pass )); do
+    if (( pass == 2 )); then
+        print -r -- ${(l:longest+longest2::-:):-}
+    fi
+    for p in "${pfxs[@]}"; do
+        for file in $HOME/functions/${~p}*; do
+            lines=( ${(f)"$(<$file)"} )
+            desc=( "${(M)lines[@]:#${header}*}" )
+            desc[1]="${desc[1]#$header}"
+            file="${file:t}"
+            [[ "$file" = "LICENSE" ]] && continue
+            if (( pass == 1 )); then
+                (( longest < ${#file} + 3 )) && longest=$(( ${#file} + 3 ))
+                (( longest2 < ${#desc[1]} )) && longest2=$(( ${#desc[1]} ))
+            else
+                echo "${file}${(l:longest-${#file}:: :):- }${desc[1]}"
+            fi
+        done
+        if (( pass == 2 )); then
+            print -r -- ${(l:longest+longest2::-:):-}
+        fi
+    done
+done
+
+# vim:ft=zsh:et
