@@ -1,0 +1,17 @@
+# DESC: Wait "$1" seconds showing animated progress bar
+
+(( ${+commands[vramsteg]} )) || { builtin print -r -- "Please install tool \`vramsteg' to use \`t1countdown' function"; return 1; }
+
+local START=$(vramsteg --now) pause_len="$1"
+integer cnt
+
+for (( cnt = 0; cnt <= pause_len * 7 - 1; ++ cnt )); do
+    command vramsteg --min 0 --max $(( pause_len * 7 - 1 )) --current "$cnt" --start "$START" --elapsed
+    LANG=C sleep 0.142
+done
+
+command vramsteg --remove
+
+return 0
+
+# vim:ft=zsh:et
