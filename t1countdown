@@ -4,6 +4,9 @@ setopt localtraps
 
 trap "return 1" INT TERM QUIT
 
+# Invoke e.g. t1countdown test && print "Progress bar available"
+[[ "$1" = "test" ]] && return $(( 1 - ${+commands[vramsteg]} ))
+
 (( ${+commands[vramsteg]} )) || {
     builtin print -r -- "Please install tool \`vramsteg' to use \`t1countdown' function"
     builtin print -r -- "Installation with Zplugin:"
