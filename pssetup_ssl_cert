@@ -1,4 +1,4 @@
-# DESC: creates certificate (files key,crt,pem), see -h
+# DESC: Creates certificate (files key,crt,pem), see -h
 
 [[ -z "$1" || "$1" = "-h" || "$1" = "--help" ]] && { print "Usage: pssetup_ssl_cert {name} [output dir path]"; return 0; }
 local FILENAME="$1"

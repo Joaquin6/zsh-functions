@@ -1,4 +1,4 @@
-# DESC: lists ~/functions/* with their embedded descriptions
+# DESC: Lists ~/functions/* with their embedded descriptions
 
 setopt localoptions extendedglob
 

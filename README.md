@@ -7,11 +7,11 @@ Listable by `pslist`:
 -----------------------------------------------------------------------
 pscopy_xauth       Copies xauth data to "$1" at "$2"
 psffconv           Converts (ffmpeg) file $1 to $2, or $1 to ${1:r}.mp4
-pslist             lists ~/functions/* with their embedded descriptions
+pslist             Lists ~/functions/* with their embedded descriptions
 psls               `ls` or `ls -A`, depending on [[ -d .git ]]
 psprobe_host       Checks "$1" is alive, outputs also timestamp
 psrecompile        Recompiles ~/.zshrc, ~/.zcompdump
-pssetup_ssl_cert   creates certificate (files key,crt,pem), see -h
+pssetup_ssl_cert   Creates certificate (files key,crt,pem), see -h
 -----------------------------------------------------------------------
 t1fromhex          Converts hex-triplet into terminal color index
 t1uncolor          Perl invocation to strip color codes (use in pipe)
@@ -33,13 +33,13 @@ n1ssl_tunnel       $0 <lstn_port> <trg_host> <trg_port> <cert> <cafile>
 -----------------------------------------------------------------------
 x1iso2dmg          Converts file $1 (iso) to ${1:r}.dmg
 -----------------------------------------------------------------------
-is_macports        tests if $PATH contains /opt/local/bin
+is_macports        Tests if $PATH contains /opt/local/bin
 localbin_off       Removes /usr/local/{bin,sbin} from $PATH
 localbin_on        Adds /usr/local/{bin,sbin} to $PATH
 mandelbrot         Draws mandelbrot fractal
 optlbin_off        Removes /opt/local/{bin,sbin} from $PATH
 optlbin_on         Adds /opt/local/bin to $PATH
-setopt             setopt wrapper with tracing to /tmp/setopt.log
+setopt             A setopt wrapper with tracing to /tmp/setopt.log
 zman               Searches zshall with special keyword ($1) matching
 -----------------------------------------------------------------------
 ```
