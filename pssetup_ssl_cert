@@ -1,8 +1,9 @@
 # DESC: creates certificate (files key,crt,pem), see -h
 
-[[ -z "$1" || "$1" = "-h" || "$1" = "--help" ]] && { print "Usage: pssetup_ssl_cert {name} [path]"; return 0; }
+[[ -z "$1" || "$1" = "-h" || "$1" = "--help" ]] && { print "Usage: pssetup_ssl_cert {name} [output dir path]"; return 0; }
 local FILENAME="$1"
 
+command mkdir -p "${2:-$HOME/safe/socat}"
 builtin cd "${2:-$HOME/safe/socat}"
 
 # Generate a public/private key pair
