@@ -29,7 +29,7 @@ for (( pass = 1; pass <= 2; ++ pass )); do
             desc=( "${(M)lines[@]:#${header}*}" )
             desc[1]="${desc[1]#$header}"
             file="${file:t}"
-            [[ "$file" = "LICENSE" ]] && continue
+            [[ "$file" = (LICENSE|README.md) ]] && continue
             if (( pass == 1 )); then
                 (( longest < ${#file} + 3 )) && longest=$(( ${#file} + 3 ))
                 (( longest2 < ${#desc[1]} )) && longest2=$(( ${#desc[1]} ))
