@@ -13,6 +13,7 @@ psprobe_host       Checks "$1" is alive, outputs also timestamp
 psrecompile        Recompiles ~/.zshrc, ~/.zcompdump
 pssetup_ssl_cert   Creates certificate (files key,crt,pem), see -h
 -----------------------------------------------------------------------
+t1countdown        Wait "$1" seconds for Ctrl-C (animated progress bar)
 t1fromhex          Converts hex-triplet into terminal color index
 t1uncolor          Perl invocation to strip color codes (use in pipe)
 -----------------------------------------------------------------------
