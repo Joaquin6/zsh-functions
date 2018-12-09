@@ -1,6 +1,8 @@
 # DESC: $0 <lstn_port> <trg_host> <trg_port> <cert> <cafile>
 # Warning: this function calls exec, run it in background
 
+setopt localoptions extendedglob noksharrays noshwordsplit
+
 usage() {
     print -r -- "Usage: $1 <listen_port> <target_host> <target_port> <cert> <cafile>"
     print -r -- "Warning: calls exec, to be run in background"
@@ -30,7 +32,8 @@ target_line="$target_line,cert=$cert,cafile=$cafile"
 
 local commonname=""
 command openssl x509 -noout -in "$cafile" -subject | read commonname
-commonname="${commonname##*/CN=}"
+commonname="${commonname##*/CN[[:space:]]#=}"
+commonname="${commonname##*, CN[[:space:]]##=[[:space:]]##}"
 
 target_line="$target_line,commonname=$commonname"
 
