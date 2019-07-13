@@ -11,7 +11,7 @@
 # deploy-code  @sleep:5.5 "BUFFER='The time has passed, sorry for replacing your command line ;)'"
 [[ "$1" = <-> && ${#} -eq 1 ]] && { zle && {
         local alltext text IFS=$'\n' nl=$'\n'
-        repeat 25; do read -u"$1" text; alltext+="${text:+$text$nl}"; done
+        repeat 25; do read -r -u"$1" text; alltext+="${text:+$text$nl}"; done
         eval "$alltext"
     }
     zle -F "$1"; exec {1}<&-
