@@ -1,6 +1,6 @@
 # DESC: `ls` or `ls -A`, depending on [[ -d .git ]]
 
-ls=exa
+local ls=exa
 
 [[ "$PWD" != "${PWD%Dropbox*}" ]] && echo -e '\x1b[5m<Dropbox>\x1b[0m'
 if [[ ! -d _darcs && ! -d .git ]]; then
