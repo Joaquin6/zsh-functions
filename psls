@@ -2,7 +2,16 @@
 
 local ls=exa
 
-[[ "$PWD" != "${PWD%Dropbox*}" ]] && echo -e '\x1b[5m<Dropbox>\x1b[0m'
+[[ "$PWD" = *Dropbox* ]] && echo -e '\x1b[5m<Dropbox>\x1b[0m'
+
+# Convert the lacking -t option into the exa's --time modification
+if [[ "$3" = -[a-zA-Z0-9]#t* ]]; then
+    1="${3//t/}"
+    set -- "$3" --time modified "${@[1,2]}" "${@[4,-1]}"
+fi
+
+set -- --git "$@"
+
 if [[ ! -d _darcs && ! -d .git ]]; then
     # Normal
     $ls "$@"
