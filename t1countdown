@@ -2,7 +2,7 @@
 
 setopt localtraps
 
-trap "return 1" INT TERM QUIT
+trap "command vramsteg --remove; return 1" INT TERM QUIT
 
 # Invoke e.g. t1countdown test && print "Progress bar available"
 [[ "$1" = "test" ]] && return $(( 1 - ${+commands[vramsteg]} ))
