@@ -3,7 +3,7 @@
 local idx
 
 for idx in 0 1; do
-    builtin print -- 'mac:'$idx to "$1"@"$2"..
+    builtin print -r -- 'mac:'$idx to "$1"@"$2"..
     command xauth nextract - 'mac:'$idx | command ssh "$1"@"$2" xauth nmerge -
 done
 
