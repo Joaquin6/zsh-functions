@@ -1,7 +1,7 @@
 # A function that displays given text surrounding it with
 # horizontal-rules (the `bars') with given color and using
 # given bar-character. The main point is:
-# - one can passs colorized text (ANSI escape sequences), and
+# - one can pass colorized text (ANSI escape sequences), and
 #   it will not disturb the output (i.e. it will not confuse
 #   the bars' lengths)
 # - one can pass the same options as to `print' builtin - the
@@ -76,7 +76,7 @@ acc_print() {
 
         # 1st return value: length of the string without escape codes
 	local input="${(j: :)@}"
-	input="${input//$'\x1b'\[[0-9;]##m/}"
+	input="${input//$'\x1b'\[[0-9;]#m/}"
 	typeset -g REPLY=${#input}
 
         # arg_keys - the keys in the opthash that belong to the with-value
