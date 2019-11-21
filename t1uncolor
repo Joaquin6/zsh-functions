@@ -1,5 +1,5 @@
 # DESC: Perl invocation to strip color codes (use in pipe)
 
-perl -pe 's/\e\[?.*?[\@-~]//g'
+perl -pe 's/\e\[[0-9;]*m//g'
 
 # vim:ft=zsh
